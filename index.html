@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Origin &amp; Roast — Third Wave Coffee</title>
+  <meta name="description" content="Local third wave coffee shop: single-origin beans, honest roasting, express pre-order for pickup.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Theme switch: pure CSS, no JavaScript -->
+  <input type="checkbox" id="theme" class="toggle">
+
+  <header class="site-header">
+    <a class="logo" href="#top">Origin &amp; Roast</a>
+    <input type="checkbox" id="burger" class="toggle">
+    <label for="burger" class="burger">Menu</label>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#beans">Beans</a></li>
+        <li><a href="#order">Menu</a></li>
+        <li><a href="#addresses">Addresses</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <h1>Fresh Roast. Honest Taste</h1>
+      <p>Small batches, roasted every morning in the city. Every bag tells you the farm, the altitude and what to taste.</p>
+      <a class="btn" href="#order">See the menu</a>
+    </section>
+
+    <section id="beans" class="section">
+      <h2>Single-origin beans</h2>
+      <p class="lead">Four farms, four countries. Pick the one that fits your cup.</p>
+      <div class="cards">
+        <article class="card">
+          <h3>Yirgacheffe</h3>
+          <dl>
+            <dt>Country</dt><dd>Ethiopia</dd>
+            <dt>Altitude</dt><dd>1900–2200 m</dd>
+          </dl>
+          <ul class="tags"><li>Jasmine</li><li>Bergamot</li><li>Peach</li></ul>
+        </article>
+        <article class="card">
+          <h3>Huila</h3>
+          <dl>
+            <dt>Country</dt><dd>Colombia</dd>
+            <dt>Altitude</dt><dd>1700 m</dd>
+          </dl>
+          <ul class="tags"><li>Caramel</li><li>Red apple</li><li>Cocoa</li></ul>
+        </article>
+        <article class="card">
+          <h3>Nyeri</h3>
+          <dl>
+            <dt>Country</dt><dd>Kenya</dd>
+            <dt>Altitude</dt><dd>1800 m</dd>
+          </dl>
+          <ul class="tags"><li>Blackcurrant</li><li>Grapefruit</li><li>Tomato</li></ul>
+        </article>
+        <article class="card">
+          <h3>Antigua</h3>
+          <dl>
+            <dt>Country</dt><dd>Guatemala</dd>
+            <dt>Altitude</dt><dd>1500 m</dd>
+          </dl>
+          <ul class="tags"><li>Dark chocolate</li><li>Hazelnut</li><li>Orange</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="order" class="section">
+      <h2>Express pre-order</h2>
+      <p class="lead">Order now, pick up hot. We confirm by phone or email.</p>
+      <form action="#" method="post">
+        <label for="item">Drink</label>
+        <select id="item" name="item" required>
+          <option value="">Choose a drink</option>
+          <option>Espresso — Yirgacheffe</option>
+          <option>Flat white — Huila</option>
+          <option>Latte— Nyeri</option>
+          <option>Raff— Antigua</option>
+        </select>
+        <span class="error">Choose a drink from the list.</span>
+
+        <label for="time">Pickup time</label>
+        <input type="time" id="time" name="time" required>
+        <span class="error">Set a pickup time.</span>
+
+        <label for="name">Your name</label>
+        <input type="text" id="name" name="name" placeholder="Aigerim" minlength="2" required>
+        <span class="error">Enter at least 2 characters.</span>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        <span class="error">Enter a valid email, like you@example.com.</span>
+
+        <label for="tel">Phone</label>
+        <input type="tel" id="tel" name="tel" placeholder="+7 700 000 00 00" pattern="[+0-9 ()\-]{10,}" required>
+        <span class="error">Enter a phone number with at least 10 digits.</span>
+
+        <button class="btn" type="submit">Place pre-order</button>
+      </form>
+    </section>
+  </main>
+
+  <footer id="addresses" class="site-footer">
+    <section>
+      <h2>Opening hours</h2>
+      <dl>
+        <dt>Mon–Fri</dt><dd>07:30–20:00</dd>
+        <dt>Sat–Sun</dt><dd>09:00–21:00</dd>
+      </dl>
+    </section>
+    <nav aria-label="Footer">
+      <h2>Find us</h2>
+      <ul>
+        <li><a href="#beans">Beans</a></li>
+        <li><a href="#order">Menu</a></li>
+        <li><a href="https://instagram.com" rel="noopener">Instagram</a></li>
+        <li><a href="https://t.me" rel="noopener">Telegram</a></li>
+      </ul>
+    </nav>
+    <section>
+      <h2>Theme</h2>
+      <label for="theme" class="btn theme-btn">Switch to dark roast</label>
+    </section>
+    <p class="legal">© 2026 Origin &amp; Roast. All rights reserved. Prices include VAT. Student project, ICT6001.</p>
+  </footer>
+</body>
+</html>
