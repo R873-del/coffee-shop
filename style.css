@@ -1,0 +1,228 @@
+/* Mobile-first. No px for sizes/spacing; only rem, em, %, vh, vw. */
+:root {
+  --bg: #e9ece6;
+  --surface: #f6f7f3;
+  --ink: #1f1a17;
+  --muted: #5a524c;
+  --accent: #a3262a;
+  --on-accent: #ffffff;
+  --line: #c3c9bd;
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Dark theme in coffee shades, switched by the checkbox in <body> */
+:root:has(#theme:checked) {
+  --bg: #1b120e;
+  --surface: #2a1d16;
+  --ink: #ecdcc6;
+  --muted: #b8a58f;
+  --accent: #d9a066;
+  --on-accent: #1b120e;
+  --line: #4a352a;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding-bottom: 4.5rem; /* room for the fixed bottom bar on phones */
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 { font-family: var(--serif); line-height: 1.15; margin: 0 0 0.75rem; }
+h2 { font-size: clamp(1.75rem, 5vw, 2.5rem); }
+a { color: inherit; }
+ul { list-style: none; margin: 0; padding: 0; }
+dl { margin: 0; }
+dd { margin: 0; }
+
+.toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- Header / Nav (mobile: bottom bar + burger) ---------- */
+.site-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.25rem;
+}
+.logo {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.burger {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 20;
+  padding: 1.1rem;
+  text-align: center;
+  font-weight: 600;
+  background: var(--ink);
+  color: var(--bg);
+  cursor: pointer;
+}
+.burger::before { content: "\2630\00a0\00a0"; }
+.site-header nav {
+  display: none;
+  position: fixed;
+  inset: auto 0 3.7rem 0;
+  z-index: 20;
+  background: var(--surface);
+  border-top: 0.0625rem solid var(--line);
+}
+#burger:checked ~ nav { display: block; }
+.site-header nav a {
+  display: block;
+  padding: 1.1rem 1.5rem;
+  text-decoration: none;
+  font-size: 1.1rem;
+  border-bottom: 0.0625rem solid var(--line);
+}
+#burger:focus-visible + .burger,
+a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible,
+#theme:focus-visible ~ footer .theme-btn {
+  outline: 0.19rem solid var(--accent);
+  outline-offset: 0.2rem;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 1rem;
+  min-height: 85vh;
+  padding: 2rem 1.25rem;
+  color: #f3e6d3;
+  background:
+    radial-gradient(circle closest-side at 75% 22%,
+      #ead6b4 0 22%, #c79a68 22% 26%, #5c3822 26% 70%, #2d1a10 70% 74%, transparent 76%),
+    linear-gradient(150deg, #1b120e, #4d2e1c);
+}
+.hero h1 { font-size: clamp(2.6rem, 11vw, 5.5rem); max-width: 12ch; margin: 0; }
+.hero p { max-width: 34ch; margin: 0; font-size: 1.1rem; }
+
+.btn {
+  display: inline-block;
+  padding: 0.9rem 1.6rem;
+  border: 0;
+  border-radius: 0.3rem;
+  background: var(--accent);
+  color: var(--on-accent);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+.hero .btn { background: #e8b27a; color: #1b120e; font-size: 1.15rem; padding: 1.1rem 2rem; }
+
+/* ---------- Sections ---------- */
+.section { padding: 3rem 1.25rem; }
+.lead { color: var(--muted); max-width: 40ch; margin: 0 0 2rem; }
+
+/* ---------- Grid: 1 column on phones ---------- */
+.cards { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+.card {
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 0.0625rem solid var(--line);
+  border-radius: 0.3rem;
+}
+.card h3 { font-size: 1.5rem; }
+.card dl, .site-footer dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 1rem;
+}
+dt { color: var(--muted); }
+dd { font-weight: 600; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+.tags li {
+  padding: 0.15rem 0.7rem;
+  border: 0.0625rem solid var(--accent);
+  border-radius: 2rem;
+  font-size: 0.9rem;
+}
+
+/* ---------- Form: validation with pure CSS ---------- */
+form {
+  display: grid;
+  gap: 0.4rem;
+  max-width: 32rem;
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 0.0625rem solid var(--line);
+  border-radius: 0.3rem;
+}
+label { font-weight: 600; margin-top: 0.6rem; }
+input, select {
+  width: 100%;
+  padding: 0.8rem;
+  font: inherit;
+  color: var(--ink);
+  background: var(--bg);
+  border: 0.125rem solid var(--line);
+  border-radius: 0.3rem;
+}
+input:user-valid, select:user-valid { border-color: #2f7d4f; }
+input:user-invalid, select:user-invalid { border-color: var(--accent); }
+.error { display: none; color: var(--accent); font-size: 0.9rem; }
+:user-invalid + .error { display: block; }
+form .btn { margin-top: 1.2rem; }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  display: grid;
+  gap: 2rem;
+  padding: 2.5rem 1.25rem;
+  background: #2a1a12;
+  color: #ecdcc6;
+}
+.site-footer h2 { font-size: 1.25rem; }
+.site-footer dt { color: #b8a58f; }
+.site-footer li { margin-bottom: 0.4rem; }
+.legal { margin: 0; font-size: 0.85rem; color: #b8a58f; }
+.theme-btn { margin: 0; background: #d9a066; color: #1b120e; }
+
+/* ---------- Tablet ---------- */
+@media (min-width: 40rem) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---------- Desktop ---------- */
+@media (min-width: 1024px) {
+  body { padding-bottom: 0; }
+  .site-header {
+    justify-content: space-between;
+    padding: 1.25rem 8%;
+  }
+  .burger { display: none; }
+  .site-header nav {
+    display: block;
+    position: static;
+    background: none;
+    border: 0;
+  }
+  .site-header nav ul { display: flex; gap: 2.5rem; }
+  .site-header nav a { padding: 0.3rem 0; border: 0; font-size: 1rem; }
+  .hero { padding: 4rem 8%; }
+  .section { padding: 5rem 8%; }
+  .cards { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  form { max-width: 36rem; }
+  .site-footer {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 3rem 8%;
+  }
+  .legal { grid-column: 1 / -1; }
+}
